@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Admin Panel</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Segoe UI',sans-serif;
+}
+
+body{
+    background:#f4f7fc;
+}
+
+/* Sidebar */
+.sidebar{
+    position:fixed;
+    left:0;
+    top:0;
+    width:250px;
+    height:100%;
+    background:linear-gradient(180deg,#6a11cb,#2575fc);
+    color:white;
+    padding-top:20px;
+}
+
+.sidebar h2{
+    text-align:center;
+    margin-bottom:30px;
+}
+
+.sidebar a{
+    display:block;
+    color:white;
+    text-decoration:none;
+    padding:15px 25px;
+    transition:0.3s;
+}
+
+.sidebar a:hover{
+    background:rgba(255,255,255,0.2);
+}
+
+/* Main Content */
+.main{
+    margin-left:250px;
+    padding:20px;
+}
+
+/* Header */
+.header{
+    background:white;
+    padding:15px 20px;
+    border-radius:12px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    box-shadow:0 3px 10px rgba(0,0,0,0.1);
+}
+
+.header h1{
+    color:#333;
+}
+
+/* Dashboard Cards */
+.cards{
+    margin-top:25px;
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+    gap:20px;
+}
+
+.card{
+    color:white;
+    padding:25px;
+    border-radius:15px;
+    text-align:center;
+    box-shadow:0 5px 15px rgba(0,0,0,0.15);
+}
+
+.card:nth-child(1){
+    background:linear-gradient(135deg,#667eea,#764ba2);
+}
+
+.card:nth-child(2){
+    background:linear-gradient(135deg,#ff758c,#ff7eb3);
+}
+
+.card:nth-child(3){
+    background:linear-gradient(135deg,#43cea2,#185a9d);
+}
+
+.card:nth-child(4){
+    background:linear-gradient(135deg,#f7971e,#ffd200);
+}
+
+/* User Table */
+.table-box{
+    margin-top:30px;
+    background:white;
+    padding:20px;
+    border-radius:15px;
+    box-shadow:0 3px 10px rgba(0,0,0,0.1);
+}
+
+table{
+    width:100%;
+    border-collapse:collapse;
+    margin-top:15px;
+}
+
+th{
+    background:#2575fc;
+    color:white;
+}
+
+th,td{
+    padding:12px;
+    border-bottom:1px solid #ddd;
+    text-align:left;
+}
+
+.status-active{
+    color:green;
+    font-weight:bold;
+}
+
+.status-pending{
+    color:orange;
+    font-weight:bold;
+}
+
+/* Buttons */
+.btn{
+    padding:8px 15px;
+    border:none;
+    border-radius:5px;
+    color:white;
+    cursor:pointer;
+}
+
+.edit{
+    background:#28a745;
+}
+
+.delete{
+    background:#dc3545;
+}
+
+/* Mobile */
+.menu-btn{
+    display:none;
+    font-size:28px;
+    cursor:pointer;
+}
+
+@media(max-width:768px){
+
+    .sidebar{
+        left:-250px;
+        transition:0.3s;
+    }
+
+    .sidebar.show{
+        left:0;
+    }
+
+    .main{
+        margin-left:0;
+    }
+
+    .menu-btn{
+        display:block;
+    }
+}
+</style>
+</head>
+<body>
+
+<!-- Sidebar -->
+<div class="sidebar" id="sidebar">
+
+    <h2>⚙ Admin Panel</h2>
+
+    <a href="#">🏠 Dashboard</a>
+    <a href="#">👥 Users</a>
+    <a href="#">📦 Products</a>
+    <a href="#">📑 Orders</a>
+    <a href="#">📊 Reports</a>
+    <a href="#">⚙ Settings</a>
+    <a href="#">🚪 Logout</a>
+
+</div>
+
+<!-- Main Content -->
+<div class="main">
+
+    <!-- Header -->
+    <div class="header">
+
+        <span class="menu-btn" onclick="toggleMenu()">☰</span>
+
+        <h1>Admin Dashboard</h1>
+
+        <h3>👤 Admin</h3>
+
+    </div>
+
+    <!-- Statistics -->
+    <div class="cards">
+
+        <div class="card">
+            <h2>1,250</h2>
+            <p>Total Users</p>
+        </div>
+
+        <div class="card">
+            <h2>320</h2>
+            <p>Orders</p>
+        </div>
+
+        <div class="card">
+            <h2>₹95,000</h2>
+            <p>Revenue</p>
+        </div>
+
+        <div class="card">
+            <h2>48</h2>
+            <p>Products</p>
+        </div>
+
+    </div>
+
+    <!-- Users Table -->
+    <div class="table-box">
+
+        <h2>Recent Users</h2>
+
+        <table>
+
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Status</th>
+                <th>Action</th>
+            </tr>
+
+            <tr>
+                <td>101</td>
+                <td>John</td>
+                <td class="status-active">Active</td>
+                <td>
+                    <button class="btn edit">Edit</button>
+                    <button class="btn delete">Delete</button>
+                </td>
+            </tr>
+
+            <tr>
+                <td>102</td>
+                <td>Sarah</td>
+                <td class="status-pending">Pending</td>
+                <td>
+                    <button class="btn edit">Edit</button>
+                    <button class="btn delete">Delete</button>
+                </td>
+            </tr>
+
+            <tr>
+                <td>103</td>
+                <td>David</td>
+                <td class="status-active">Active</td>
+                <td>
+                    <button class="btn edit">Edit</button>
+                    <button class="btn delete">Delete</button>
+                </td>
+            </tr>
+
+        </table>
+
+    </div>
+
+</div>
+
+<script>
+function toggleMenu(){
+    document.getElementById("sidebar")
+            .classList.toggle("show");
+}
+</script>
+
+</body>
+</html>
